@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket</title>
+    <style>
+        *{
+            scroll-behavior: smooth;
+        }
+        body{
+            background-color:#1e1f26;
+            
+        }
+        .navbar{
+            overflow: auto;
+            width: 207%;
+            background:rgba(255, 255, 255, 0.589);
+            backdrop-filter: blur(5px);
+            
+        }
+        .navbar:hover{
+            background-color: rgb(75, 73, 73);
+            font-weight: bolder;
+            transition: all ease 1s;
+        }
+        .nv{
+            position: absolute;
+            top: 0%;
+            left: 0%;
+             display: block;
+            text-decoration: none;
+        }
+        .navbar li{
+            float: left;
+            list-style: none;
+            margin: 13px 30px;
+            font-family: cursive;
+            
+        }
+        .navbar li a{
+            padding: 19px;
+            text-decoration: none;
+            color:black;
+            
+        }
+        .navbar li a:hover{
+            color: rgb(41, 187, 41);
+        }
+        .search{
+
+            color: white;
+            padding:10px 75px;
+            margin: 4px;
+        }
+        .navbar input{
+            border: 2px solid black;
+            border-radius: 7px;
+            padding: 3px 17px;
+            width: 120px;
+        }
+        .logo{
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            float: inline-start;
+            font-family:cursive;
+        }
+        .logo:hover{color: rgb(221, 65, 91);}
+        .im1{
+            width:101%;
+            height: 585px; 
+        }
+        .para span{
+            color: green;
+        }
+        .para::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 8px;
+            width: 10%;
+            background-color: white;
+            transition: all ease 1s;
+        }
+        .para:hover::after{
+            width: 95%;
+        }
+        .para{
+        position: absolute;
+         top: 54%;
+         left: 66%;
+         color: white;
+         display: block;
+         text-decoration: none;
+         font-weight: bold;
+         font-size: 45px;
+         font-family:monospace;
+        }
+        section{
+            padding: 20px;
+            
+        }
+        .apply{
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background: #ffa500;
+            font-weight: bold;
+            text-align: center;
+        }
+        .apply:hover{
+            color: green;
+        }
+        .container{
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+            
+        }
+        .sidebar{
+            background: #646363a9;
+            backdrop-filter: blur(5px);
+            height: fit-content;
+            border-radius: 1rem;
+            padding: 2rem 2.5rem;
+            width: 18%;
+            float: inline-start;
+        }
+        .sidebargrp{
+            margin-bottom: 1rem;
+        }
+        .title{
+            margin-bottom: .5rem;
+            color: whitesmoke;
+            font-weight: bold;
+        }
+        input{
+            margin-bottom: .6rem;
+        }
+        input[type=checkbox]:checked{
+            accent-color: orange;
+        }
+        input[type=radio]:checked{
+            accent-color: orange;
+        }
+        label{
+            margin-left: .5rem;
+        }
+        .umovie{
+            float: inline-end;
+            position: relative;
+            width: 70%;
+            height: 614px; 
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+        .um1{
+            width: 100%;
+        }
+        .cl1{
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color:#ffa500;
+            background-color: #1e1f26;
+            padding: .5rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid #ffa500;
+            font-weight: 500;
+        }
+        .button{
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+        }
+        .cl2{
+            background-color: #1e1f26;
+            color: #ffa500;
+            border: 1px solid #ffa500;
+            margin-left: 1rem;
+            padding: .5rem 1rem;
+            border-radius: 2rem;
+            text-decoration: none;
+        }
+        .cl2:hover{
+            background-color: #92601f;
+        }
+        @keyframes scaleUp {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1); /* Adjust the value for the "hover" effect */
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes scaleDown {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.9); /* Adjust the value for the "active" effect */
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+        .m1{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+            transition: transform 0.3s ease;
+        }
+        .m1:hover{animation: scaleUp 0.2s ease;}
+        .m1:active{ animation: scaleDown 0.2s ease;}
+        .name{
+            position: absolute;
+            left: 75px;
+            top: 1346px;
+            color: gold;
+        }
+        .p1{
+            position: absolute;
+            left: 75px;
+            top:1571px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p1:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m2{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m2:hover{animation: scaleUp 0.2s ease;}
+        .m2:active{ animation: scaleDown 0.2s ease;}
+        .name1{
+            position: absolute;
+            left: 500px;
+            top: 1346px;
+            color: gold;
+        }
+        .p2{
+            position: absolute;
+            left: 500px;
+            top:1571px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p2:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m3{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m3:hover{animation: scaleUp 0.2s ease;}
+        .m3:active{ animation: scaleDown 0.2s ease;}
+        .name2{
+            position: absolute;
+            left: 900px;
+            top: 1346px;
+            color: gold;
+        }
+        .p3{
+            position: absolute;
+            left: 900px;
+            top:1571px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p3:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m4{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m4:hover{animation: scaleUp 0.2s ease;}
+        .m4:active{ animation: scaleDown 0.2s ease;}
+        .name3{
+            position: absolute;
+            left: 75px;
+            top: 1693px;
+            color: gold;
+        }
+        .p4{
+            position: absolute;
+            left: 75px;
+            top:1925px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p4:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m5{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m5:hover{animation: scaleUp 0.2s ease;}
+        .m5:active{ animation: scaleDown 0.2s ease;}
+        .name4{
+            position: absolute;
+            left: 500px;
+            top: 1693px;
+            color: gold;
+        }
+        .p5{
+            position: absolute;
+            left: 500px;
+            top:1925px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p5:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m6{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m6:hover{animation: scaleUp 0.2s ease;}
+        .m6:active{ animation: scaleDown 0.2s ease;}
+        .name5{
+            position: absolute;
+            left: 900px;
+            top: 1693px;
+            color: gold;
+        }
+        .p6{
+            position: absolute;
+            left: 900px;
+            top:1925px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p6:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m7{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m7:hover{animation: scaleUp 0.2s ease;}
+        .m7:active{ animation: scaleDown 0.2s ease;}
+        .name6{
+            position: absolute;
+            left: 75px;
+            top: 2050px;
+            color: gold;
+        }
+        .p7{
+            position: absolute;
+            left: 75px;
+            top:2285px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p7:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m8{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m8:hover{animation: scaleUp 0.2s ease;}
+        .m8:active{ animation: scaleDown 0.2s ease;}
+        .name7{
+            position: absolute;
+            left: 500px;
+            top: 2050px;
+            color: gold;
+        }
+        .p8{
+            position: absolute;
+            left: 500px;
+            top:2285px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p8:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .m9{
+            border: 1px transparent;
+            height: 300px;
+            width: 350px;
+            display: inline-block;
+            border-radius: 1rem;
+            float: left;
+            margin: 30px;
+        }
+        .m9:hover{animation: scaleUp 0.2s ease;}
+        .m9:active{ animation: scaleDown 0.2s ease;}
+        .name8{
+            position: absolute;
+            left: 900px;
+            top: 2050px;
+            color: gold;
+        }
+        .p9{
+            position: absolute;
+            left: 900px;
+            top:2285px;
+            border: 1px solid #ffa500 ;
+            background-color: #1e1f26;
+            color: #ffa500;
+            text-decoration: none;
+            border-radius: .2rem;
+        }
+        .p9:hover{
+            background-color: #92601f;
+            animation: scaleUp 0.2s ease;
+        }
+        .p9:active{ animation: scaleDown 0.2s ease;}
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="m1.avif" class="im1">
+    <header class="nv">
+        <nav class="navbar">
+            <li class="logo">Daily Cinema<br>Club</li>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#sec1">Movies</a></li>
+                <li><a href="aboutm.html">About</a></li>
+                <li><a href="contactm.html">Contact Us</a></li>
+                <div class="search">
+                    <input type="text" name="Search" placeholder="Search">
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <p class="para">BOOK YOUR TICKETS FOR <span>MOVIES</span></p>
+</div>
+<section id="sec1">
+    <divclass="container">
+    <div class="sidebar">
+        <form action="#">
+            <div class="sidebargrp">
+                <h3 class="title">Categories</h3>
+                <input type="checkbox" id="adventure" name="adventure" value="adventure">
+                <label for="adventure">Adventure</label><br>
+                <input type="checkbox" id="action" name="Action" value="Action">
+                <label for="Action">Action</label><br>
+                <input type="checkbox" id="Animation" name="Animation" value="Animation">
+                <label for="Animation">Animation</label><br>
+                <input type="checkbox" id="Comedy" name="Comedy" value="Comedy">
+                <label for="Comedy">Comedy</label><br>
+                <input type="checkbox" id="Science Fiction" name="Science Fiction" value="Science Fiction">
+                <label for="Science Fiction">Science Fiction</label><br>
+                <input type="checkbox" id="Thriller" name="Thriller" value="Thriller">
+                <label for="Thriller">Thriller</label><br>
+                <input type="checkbox" id="History" name="History" value="History">
+                <label for="History">History</label><br>
+                <input type="checkbox" id="Documentary" name="Documentary" value="Documentary">
+                <label for="Documentary">Documentary</label><br>
+                <input type="checkbox" id="Fantasy" name="Fantasy" value="Fantasy">
+                <label for="Fantasy">Fantasy</label><br>
+            </div>
+            <div class="sidebargrp">
+                <h3 class="title">Language</h3>
+                <input type="checkbox" id="English" name="English" value="English">
+                <label for="English">English</label><br>
+                <input type="checkbox" id="Hindi" name="Hindi" value="Hindi">
+                <label for="Hindi">Hindi</label><br>
+                
+            </div>
+            <div class="sidebargrp">
+                <h3 class="title">Time</h3>
+                <input type="radio" id="Morning" name="Morning" value="Morning">
+                <label for="Morning">Morning</label><br>
+                <input type="radio" id="Night" name="Night" value="Night">
+                <label for="Night">Night</label><br>
+            </div>
+            <div class="sidebargrp">
+                <input type="button" value="Apply Filters" class="apply">
+            </div>
+        </form>
+    </div>
+<div class="movie"></div>
+<div class="umovie">
+    <img src="m4.jpg" class="um1">
+    <p class="cl1">Upcoming Movie</p>
+    <div class="button">
+        <a href="#" class="cl2">Book Now</a>
+        <a href="https://youtu.be/6xJptj7AVSA?si=rzBcgdDdKNWcatrA" class="cl2">Play Trailer</a>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div>
+<img src="b1.avif" alt="" class="m1">
+<h1 class="name">Yodha</h1>
+<a href="#" class="p1">450 &#x20B9;<br>Buy Tickets</a>
+
+</div>
+<div>
+<img src="m6.jpg" alt="" class="m2">
+<h1 class="name1">Joker</h1>
+<a href="#" class="p2">700 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m7.webp" alt="" class="m3">
+<h1 class="name2">One Piece Red</h1>
+<a href="#" class="p3">550 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m8.jpg" alt="" class="m4">
+<h1 class="name3">Jawan</h1>
+<a href="#" class="p4">300 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m9.jpg" alt="" class="m5">
+<h1 class="name4">Avengers Endgane</h1>
+<a href="#" class="p5">200 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m10.jpg" alt="" class="m6">
+<h1 class="name5">Black Clover</h1>
+<a href="#" class="p6">1000 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m11.jpg" alt="" class="m7">
+<h1 class="name6">Exits</h1>
+<a href="#" class="p7">550 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m12.avif" alt="" class="m8">
+<h1 class="name7">Fukre 4</h1>
+<a href="#" class="p8">400 &#x20B9;<br>Buy Tickets</a>
+</div>
+<div>
+<img src="m13.jpg" alt="" class="m9">
+<h1 class="name8">Suzume</h1>
+<a href="#" class="p9">600 &#x20B9;<br>Buy Tickets</a>
+</div>
+</body>
+</html>
